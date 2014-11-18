@@ -1,6 +1,6 @@
 {
   "name": "makeshift-http-cache",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "quick http cache for offline development",
   "keywords": ["http", "offline"],
   "main": "index.js",

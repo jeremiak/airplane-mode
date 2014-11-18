@@ -19,14 +19,14 @@ app.get('/*', function(req, res){
   var desiredUrl = req.path.slice(1);
 
   if (cache.hasOwnProperty(desiredUrl)) {
-    console.log('cached url', desiredUrl);
+    console.log('cached url: ', desiredUrl);
     var body = cache[desiredUrl]['body'];
     var headers = cache[desiredUrl]['headers']
     res.set(headers);
     res.send(body);
   }
   else {
-    console.log('not cached url', desiredUrl);
+    console.log('not cached url: ', desiredUrl);
 
     var options = {
       url: 'http://' + desiredUrl,
@@ -47,9 +47,14 @@ app.get('/*', function(req, res){
   }
 });
 
+function welcome(host, port){
+  console.log('makeshift http cache');
+  console.log('readme can be found at https://github.com/jeremiak/makeshift-http-cache');
+  console.log('listening at %s:%s', host, port);
+}
+
 var server = app.listen(3000, function() {
   var host = server.address().address;
   var port = server.address().port;
-
-  console.log('Listening at %s:%s', host, port);
+  welcome(host, port);
 })
