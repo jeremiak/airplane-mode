@@ -4,7 +4,7 @@
   "description": "quick http cache for offline development",
   "main": "index.js",
   "scripts": {
-    "start": "npm index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
