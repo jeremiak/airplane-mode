@@ -48,7 +48,9 @@ app.get('/*', function(req, res){
 });
 
 function welcome(host, port){
-  console.log('makeshift http cache');
+  var package = require('./package.json')
+
+  console.log('makeshift http cache v' + package['version']);
   console.log('readme can be found at https://github.com/jeremiak/makeshift-http-cache');
   console.log('listening at %s:%s', host, port);
 }
