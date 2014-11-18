@@ -11,7 +11,7 @@ app.get('/favicon.ico', function(req, res) {
   res.sendStatus(404);
 });
 
-app.get('/dump', function(req, res) {
+app.get('/cache', function(req, res) {
   res.send(cache);
 });
 

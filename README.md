@@ -25,3 +25,5 @@ for example, if I wanted the JSON from `developer.trade.gov/api.json` to be avai
 the cache is an in-memory cache that lasts for the lifespan of the application. resetting the cache is easy: just restart makeshift.
 
 currently, makeshift doesn't support `https` but hopefully that will change in the near future
+
+if you want to take a look at the current contents of the cache at anytime, just visit `http://0.0.0.0:3000/cache`
