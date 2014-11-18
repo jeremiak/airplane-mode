@@ -5,32 +5,43 @@ var request = require('request');
 
 var app = express();
 
-var db = {};
+var cache = {};
+
+app.get('/favicon.ico', function(req, res) {
+  res.sendStatus(404);
+});
 
 app.get('/dump', function(req, res) {
-  res.send(db);
+  res.send(cache);
 });
 
 app.get('/*', function(req, res){
   var desiredUrl = req.path.slice(1);
 
-  if (db.hasOwnProperty(desiredUrl)) {
+  if (cache.hasOwnProperty(desiredUrl)) {
     console.log('cached url', desiredUrl);
-    var body = db[desiredUrl]['body'];
+    var body = cache[desiredUrl]['body'];
+    var headers = cache[desiredUrl]['headers']
+    res.set(headers);
     res.send(body);
   }
   else {
     console.log('not cached url', desiredUrl);
+
     var options = {
-      'url': 'http://' + desiredUrl,
+      url: 'http://' + desiredUrl,
       qs: req.query
-    }
+    };
+
     request.get(options, function (err, response, body) {
+      var headers = response.headers;
       responseData = {
-        'headers': {},
-        'body': body
+        headers: headers,
+        body: body
       }
-      db[desiredUrl] = responseData;
+      cache[desiredUrl] = responseData;
+
+      res.set(headers);
       res.send(body);
     });
   }
