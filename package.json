@@ -2,6 +2,7 @@
   "name": "makeshift-http-cache",
   "version": "0.0.1",
   "description": "quick http cache for offline development",
+  "keywords": ["http", "offline"],
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -15,5 +16,12 @@
   "dependencies": {
     "express": "^4.10.2",
     "request": "^2.48.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jeremiak/makeshift-http-cache/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeremiak/makeshift-http-cache.git"
   }
 }
