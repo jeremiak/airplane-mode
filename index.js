@@ -34,15 +34,21 @@ app.get('/*', function(req, res){
     };
 
     request.get(options, function (err, response, body) {
-      var headers = response.headers;
-      responseData = {
-        headers: headers,
-        body: body
-      }
-      cache[desiredUrl] = responseData;
+      console.log('err', err);
+      if (!err) {
+        var headers = response.headers;
+        responseData = {
+          headers: headers,
+          body: body
+        }
+        cache[desiredUrl] = responseData;
 
-      res.set(headers);
-      res.send(body);
+        res.set(headers);
+        res.send(body);
+      }
+      else {
+        res.send(err);
+      }
     });
   }
 });
