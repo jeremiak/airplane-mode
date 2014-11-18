@@ -34,7 +34,6 @@ app.get('/*', function(req, res){
     };
 
     request.get(options, function (err, response, body) {
-      console.log('err', err);
       if (!err) {
         var headers = response.headers;
         responseData = {
