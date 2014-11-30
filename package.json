@@ -1,8 +1,13 @@
 {
   "name": "airplane-mode",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "quick http cache for offline development",
-  "keywords": ["http", "offline", "airplane", "cache"],
+  "keywords": [
+    "http",
+    "offline",
+    "airplane",
+    "cache"
+  ],
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -15,7 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.10.2",
-    "request": "^2.48.0"
+    "request": "^2.48.0",
+    "colors": "^1.0.3",
+    "portfinder": "^0.2.1"
   },
   "bugs": {
     "url": "https://github.com/jeremiak/airplane-mode/issues"
