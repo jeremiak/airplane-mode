@@ -9,7 +9,6 @@ portfinder.basePort = 3000;
 var app = express(), server;
 var cache = {};
 
-
 app.get('/favicon.ico', function(req, res) {
   res.sendStatus(404);
 });
