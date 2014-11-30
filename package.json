@@ -1,15 +1,15 @@
 {
-  "name": "makeshift-http-cache",
+  "name": "airplane-mode",
   "version": "0.0.4",
   "description": "quick http cache for offline development",
-  "keywords": ["http", "offline"],
+  "keywords": ["http", "offline", "airplane", "cache"],
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "makeshift": "./index.js"
+    "airplane-mode": "./index.js"
   },
   "author": "jeremiak",
   "license": "ISC",
@@ -18,10 +18,10 @@
     "request": "^2.48.0"
   },
   "bugs": {
-    "url": "https://github.com/jeremiak/makeshift-http-cache/issues"
+    "url": "https://github.com/jeremiak/airplane-mode/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jeremiak/makeshift-http-cache.git"
+    "url": "https://github.com/jeremiak/airplane-mode.git"
   }
 }
