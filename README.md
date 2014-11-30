@@ -1,4 +1,6 @@
-# :airplane: airplane-mode - a quick http cache
+# :airplane: airplane-mode
+
+an easy-to-use http cache inspired by [runscope](http://www.runscope.com) and inflight-wifi
 
 ## purpose
 
