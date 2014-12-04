@@ -1,4 +1,5 @@
 # :airplane: airplane-mode
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jeremiak/airplane-mode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 an easy-to-use http cache inspired by [runscope](http://www.runscope.com) and in-flight wifi
 
