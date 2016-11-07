@@ -34,6 +34,7 @@
     "url": "https://github.com/jeremiak/airplane-mode.git"
   },
   "devDependencies": {
+    "sinon": "^1.17.6",
     "tape": "^4.6.2"
   }
 }
