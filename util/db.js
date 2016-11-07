@@ -1,6 +1,7 @@
+var path = require('path')
 var levelup = require('levelup')
 
-var DB_PATH = '../data/url-cache.db'
+var DB_PATH = path.join(__dirname, '../data/url-cache.db')
 var db = levelup(DB_PATH, {
   valueEncoding: 'json'
 })
