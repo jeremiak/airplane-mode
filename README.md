@@ -1,31 +1,35 @@
 # :airplane: airplane-mode
 
-an easy-to-use http cache inspired by [runscope](http://www.runscope.com) and in-flight wifi
+An easy-to-use http cache inspired by [Runscope](http://www.runscope.com) and in-flight WiFi
 
-## purpose
+## Purpose
 
-provide an easy to set up http cache for offline development.
+Provide an easy to set up http cache for offline development.
 
-with airplane-mode you can cache any url (headers and response) easily so that when your internet connection isn't reliable you can still develop features.
+With `airplane-mode` you can cache any url (headers and response) easily so that when your internet connection isn't reliable you can still develop features.
 
-## wait, but why?
+## Wait, but why?
 
-over the past few weeks i've spent quite a bit of time on airplanes. on my last trip, i wanted to write a bit of client-side d3 but because the page required an API response for the data, i was stuck with either paying for expensive (yet shitty) airplane internet or just not doing development. those seemed like a bad set of options.
+Over the past few weeks I've spent quite a bit of time on airplanes. On my last trip, I wanted to write a bit of client-side d3 but because the page required an API response for the data, I was stuck with either paying for expensive (yet shitty) airplane internet or just not doing development. Those seemed like a bad set of options.
 
-airplane-mode is a quick solution to that problem. now i/you can easily cache a few responses you know you'll need for offline development and then not worry about connectivity.
+`airplane-mode` is a quick solution to that problem. Now I/you can easily cache a few responses you know you'll need for offline development and then not worry about connectivity.
 
-## installation & usage
+## Installation & usage
 
-run `npm install -g airplane-mode`
+Run `npm install -g airplane-mode`
 
-once installed, just use the command `airplane-mode` to run.
+Once installed, just use the command `airplane-mode` to run. `airplane-mode` accepts a few flags
 
-now you can easily populate your cache, by prefixing all of the requests you want cached with `http://0.0.0.0:3000`.
+* `--cors` will force every response to have `Access-Control-Allow-Origin` set to `'*'`
+* `--port 3000` will set up the server at port `3000` if it is available
 
-for example, if i wanted the JSON from `developer.trade.gov/api.json` to be available through the cache, i simply need to make a request to `http://0.0.0.0:3000/developer.trade.gov/api.json`
+Now you can easily populate your cache, by prefixing all of the requests you want cached with `http://0.0.0.0:3000`.
 
-the cache is an in-memory cache that lasts for the lifespan of the application. resetting the cache is easy: just restart airplane-mode.
+For example, if I wanted the JSON from [https://developer.trade.gov/api.json](`https://developer.trade.gov/api.json`) to be available through the cache, I simply need to make a request to `http://0.0.0.0:3000/https://developer.trade.gov/api.json`
 
-currently, airplane-mode doesn't support `https` but hopefully that will change in the near future
+The cache is persistent using LevelDB. You can reset the cache in two ways:
 
-if you want to take a look at the current contents of the cache at anytime, just visit `http://0.0.0.0:3000/cache`
+1. `DELETE http://0.0.0.0:3000/cache/:url` will remove the matching entry
+2. `DELETE http://0.0.0.0:3000/cache` will remove all entries
+
+If you want to take a look at the current contents of the cache at anytime, just visit `http://0.0.0.0:3000/cache`

@@ -11,18 +11,20 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "export NODE_TEST=1 && tape tests/**/*.test.js && unset NODE_TEST"
   },
   "bin": {
     "airplane-mode": "./index.js"
   },
   "author": "jeremiak",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "ejs": "^2.5.2",
     "express": "^4.10.2",
-    "request": "^2.48.0",
-    "colors": "^1.0.3",
-    "portfinder": "^0.2.1"
+    "leveldown": "^1.5.0",
+    "levelup": "^1.3.3",
+    "portfinder": "^0.2.1",
+    "request": "^2.48.0"
   },
   "bugs": {
     "url": "https://github.com/jeremiak/airplane-mode/issues"
@@ -30,5 +32,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jeremiak/airplane-mode.git"
+  },
+  "devDependencies": {
+    "tape": "^4.6.2"
   }
 }

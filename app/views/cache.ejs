@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Cached Urls</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: monospace;
+      }
+      body {
+        background-color: pink;
+      }
+      main {
+        margin: 0 auto;
+        width: 800px;
+      }
+      li {
+        font-size: 1.1em;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>airplane-mode</h1>
+      <h2>Currently cached:</h2>
+      <ul>
+      <% keys.forEach(function(url) { %>
+        <li><%= url %></li>
+      <% }) %>
+      </ul>
+    </main>
+  </body>
+</html>
