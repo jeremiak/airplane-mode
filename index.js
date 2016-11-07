@@ -1,74 +1,48 @@
-#!/usr/local/bin/node
-var colors = require('colors');
-var express = require('express');
-var portfinder = require('portfinder');
-var request = require('request');
+#!/usr/bin/env node
 
-portfinder.basePort = 3000;
+var portfinder = require('portfinder')
 
-var app = express(), server;
-var cache = {};
+var app = require('./app/server.js')
+var db = require('./util/db.js')
+var getConfig = require('./util/getConfig.js')
+var package = require('./package.json')
 
-app.get('/favicon.ico', function(req, res) {
-  res.sendStatus(404);
-});
+var config = getConfig(process.argv.slice(2))
+app.set('FORCE_CORS', config.forceCors)
 
-app.get('/cache', function(req, res) {
-  res.send(cache);
-});
+function helpText() {
+  var demo = 'http://www.theschmearcampaign.com'
+  var text = [
+    `airplane-mode version ${package['version']}`,
+    `${package.description}`,
+    `\n`,
+    `cache a URL by appending it to the airplane-mode server url.`,
+    `for example, http://0.0.0.0:${config.port}/${demo} would cache ${demo}`,
+    `\n`,
+    `you can also set some options:`,
+    `  --cors will force every response to allow CORS requests`,
+    `  --port ${config.port} will use ${config.port} if it is available`
+  ].join('\n')
 
-app.get('/*', function(req, res){
-  var desiredUrl = req.path.slice(1);
-
-  if (cache.hasOwnProperty(desiredUrl)) {
-    console.log('cached url: \t'.green, desiredUrl);
-    var body = cache[desiredUrl]['body'];
-    var headers = cache[desiredUrl]['headers']
-    res.set(headers);
-    res.send(body);
-  }
-  else {
-    console.log('not cached url: '.red, desiredUrl);
-
-    var options = {
-      url: 'http://' + desiredUrl,
-      qs: req.query
-    };
-
-    request.get(options, function (err, response, body) {
-      if (!err) {
-        var headers = response.headers;
-        responseData = {
-          headers: headers,
-          body: body
-        }
-        cache[desiredUrl] = responseData;
-
-        res.set(headers);
-        res.send(body);
-      }
-      else {
-        res.send(err);
-      }
-    });
-  }
-});
-
-function welcomeText(host, port){
-  var package = require('./package.json');
-  var url = 'http://' + host + ':' + port;
-
-  console.log('airplane-mode http cache v' + package['version']);
-  console.log('listening at ' + url.blue);
-  console.log('open url like ' + (url + '/developer.trade.gov/api.json').blue + ' to cache');
-  console.log('use ' + (url + '/cache').blue + ' to view currently cached data');
-  console.log('full readme can be found at https://github.com/jeremiak/airplane-mode');
-  console.log('\n\n');
+  console.log(`${text}\n`)
 }
 
+function runningText(host, port){
+  var text = [
+    `airplane-mode version ${package['version']}`,
+    `listening at http://${host}:${port}`,
+    '  run with --help for more instructions'
+  ].join('\n')
+
+  console.log(`${text}\n`)
+}
+
+if (config.showHelp) return helpText()
+
+portfinder.basePort = config.port
 portfinder.getPort(function (err, port) {
-  server = app.listen(port, function() {
+  server = app.listen(port, '0.0.0.0', function() {
     var host = server.address().address;
-    welcomeText(host, port);
-  });
-});
+    runningText(host, port);
+  })
+})
