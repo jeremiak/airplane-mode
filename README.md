@@ -21,6 +21,7 @@ Run `npm install -g airplane-mode`
 
 Once installed, just use the command `airplane-mode` to run. `airplane-mode` accepts a few flags
 
+* `--clear-cache` will clear the entire cache when the server starts
 * `--cors` will force every response to have `Access-Control-Allow-Origin` set to `'*'`
 * `--port 3000` will set up the server at port `3000` if it is available
 
@@ -32,5 +33,6 @@ The cache is persistent using LevelDB. You can reset the cache in two ways:
 
 1. `DELETE http://0.0.0.0:3000/cache/:url` will remove the matching entry
 2. `DELETE http://0.0.0.0:3000/cache` will remove all entries
+3. `airplane-mode --clear-cache` will remove all entries and start the server
 
 If you want to take a look at the current contents of the cache at anytime, just visit `http://0.0.0.0:3000/cache`
