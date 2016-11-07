@@ -25,7 +25,7 @@ Once installed, just use the command `airplane-mode` to run. `airplane-mode` acc
 
 Now you can easily populate your cache, by prefixing all of the requests you want cached with `http://0.0.0.0:3000`.
 
-For example, if I wanted the JSON from [https://developer.trade.gov/api.json](`https://developer.trade.gov/api.json`) to be available through the cache, I simply need to make a request to `http://0.0.0.0:3000/https://developer.trade.gov/api.json`
+For example, if I wanted the JSON from [http://www.theschmearcampaign.com/api/bakers.json](`http://www.theschmearcampaign.com/api/bakers.json`) to be available through the cache, I simply need to make a request to `http://0.0.0.0:3000/http://www.theschmearcampaign.com/api/bakers.json`
 
 The cache is persistent using LevelDB. You can reset the cache in two ways:
 
