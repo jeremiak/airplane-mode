@@ -20,6 +20,7 @@ function helpText() {
     `for example, http://0.0.0.0:${config.port}/${demo} would cache ${demo}`,
     `\n`,
     `you can also set some options:`,
+    `  --clear-cache will clear the cache when the server starts`,
     `  --cors will force every response to allow CORS requests`,
     `  --port ${config.port} will use ${config.port} if it is available`
   ].join('\n')
@@ -37,12 +38,17 @@ function runningText(host, port){
   console.log(`${text}\n`)
 }
 
-if (config.showHelp) return helpText()
-
-portfinder.basePort = config.port
-portfinder.getPort(function (err, port) {
-  server = app.listen(port, '0.0.0.0', function() {
-    var host = server.address().address;
-    runningText(host, port);
+function start() {
+  portfinder.basePort = config.port
+  portfinder.getPort(function (err, port) {
+    server = app.listen(port, '0.0.0.0', function() {
+      var host = server.address().address;
+      runningText(host, port);
+    })
   })
-})
+}
+
+if (config.showHelp) return helpText()
+if (config.clearCache) return db.clear(() => start())
+
+start()
