@@ -1,5 +1,5 @@
 # :airplane: airplane-mode
-[![CircleCI](https://circleci.com/gh/jeremiak/airplane-mode.svg?style=svg)](https://circleci.com/gh/jeremiak/airplane-mode)
+[![CircleCI](https://circleci.com/gh/jeremiak/airplane-mode.svg?style=svg)](https://circleci.com/gh/jeremiak/airplane-mode) [![npm version](https://badge.fury.io/js/airplane-mode.svg)](https://badge.fury.io/js/airplane-mode)
 
 An easy-to-use http cache inspired by [Runscope](http://www.runscope.com) and in-flight WiFi
 
