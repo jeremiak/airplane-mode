@@ -1,0 +1,39 @@
+node_modules
+
+# VS Code
+.vscode
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+.storybook
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+*storybook.log
+storybook-static
+# SQLite
+*.db
+
+# Electron
+/out
+/dist
+
+# Settings used by npm run dev
+/.dev

@@ -1,0 +1,205 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+/* Components are styled with `dark:` classes, which always apply (app.html sets class="dark");
+   the light theme comes from the tokens below, not from light-only classes */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens, each as light-dark(light, dark): the page's color-scheme picks one (set from
+ * Settings → Appearance; see the html rules below).
+ *
+ * Dark is a glass-cockpit look. Components use Tailwind's palette names, so the palette is
+ * redefined here instead of renaming classes everywhere:
+ * - slate is the display scale, from the dark panel background (950) to white symbology (50)
+ * - the accents follow cockpit display conventions: cyan for selected values and links (sky),
+ *   green for normal/OK (emerald), amber for caution and red for warnings
+ * - blue is what @tailwindcss/forms uses for focus rings and checkboxes
+ *
+ * Light is an aeronautical chart: navy ink on cream paper, chart blue for selected values and
+ * links, and chart magenta for the route. The slate scale runs the other way, from paper (950) to
+ * ink (50), so components need no light-only classes, and the accents are darker to read on paper.
+ */
+@theme {
+	--color-slate-50: light-dark(#13213a, #ffffff);
+	--color-slate-100: light-dark(#1f2a3c, #e8edf2);
+	--color-slate-200: light-dark(#303948, #cdd5de);
+	--color-slate-300: light-dark(#434b59, #aab5c2);
+	--color-slate-400: light-dark(#565d69, #8593a3);
+	--color-slate-500: light-dark(#736d5e, #667384);
+	--color-slate-600: light-dark(#a39880, #4b5665);
+	--color-slate-700: light-dark(#c9bea6, #364050);
+	--color-slate-800: light-dark(#e0d7c3, #252d38);
+	--color-slate-900: light-dark(#fffdf6, #171d25);
+	--color-slate-950: light-dark(#f3eedf, #0d1117);
+
+	--color-sky-300: light-dark(#0f4c8a, #8ee8ff);
+	--color-sky-400: light-dark(#1a62ad, #3fd4f5);
+	--color-sky-950: light-dark(#e0e9f4, #082a33);
+	--color-emerald-300: light-dark(#12613a, #7ef0a0);
+	--color-emerald-400: light-dark(#1b7a4a, #3ddc84);
+	--color-emerald-950: light-dark(#dff0e3, #0b2a18);
+	--color-amber-300: light-dark(#915400, #ffc94d);
+	--color-amber-950: light-dark(#f8ebcf, #33260a);
+	--color-red-300: light-dark(#9e2a20, #ff9a9a);
+	--color-red-400: light-dark(#b93a2e, #ff5c5c);
+	--color-red-800: light-dark(#e5b3ac, #7a1c1c);
+	--color-red-950: light-dark(#f9e3df, #2e0f0f);
+	--color-blue-500: light-dark(#1a62ad, #3fd4f5);
+	--color-blue-600: light-dark(#1a62ad, #3fd4f5);
+
+	/* B612 was designed by Airbus for cockpit displays. URLs and code use the system monospace
+	   font, which keeps punctuation tight (B612 Mono spaces out ":" and "." in URLs). */
+	--font-sans: 'B612', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+	--radius-sm: 3px;
+	--radius-md: 4px;
+	--radius-lg: 6px;
+
+	/* An airplane crossing the status strip, trailing its contrail */
+	--animate-flyover: flyover 2.6s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+	/* The Add to cache button's airplane taking off, over and over, while it works */
+	--animate-takeoff: takeoff 0.9s ease-in infinite;
+
+	@keyframes flyover {
+		from {
+			transform: translateX(-8rem);
+		}
+		to {
+			transform: translateX(100vw);
+		}
+	}
+
+	@keyframes takeoff {
+		0% {
+			transform: translate(-0.4rem, 0.4rem);
+			opacity: 0;
+		}
+		30% {
+			opacity: 1;
+		}
+		100% {
+			transform: translate(0.5rem, -0.5rem);
+			opacity: 0;
+		}
+	}
+}
+
+/* An instrument panel set into the console: a faint lit top edge and a shadow below */
+@utility panel {
+	box-shadow:
+		inset 0 1px 0 light-dark(transparent, rgb(255 255 255 / 0.05)),
+		0 1px 0 light-dark(rgb(19 33 58 / 0.06), rgb(0 0 0 / 0.6)),
+		0 4px 12px light-dark(rgb(19 33 58 / 0.05), rgb(0 0 0 / 0.25));
+}
+
+/* An annunciator light: outlined in its own colour, uppercase and spaced out */
+@utility annunciator {
+	border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	font-size: 0.7rem;
+	font-weight: 700;
+}
+
+@layer base {
+	/* Slightly larger than the browser default of 16px. Tailwind sizes text and spacing in rem, so
+	   everything scales with it. */
+	html {
+		font-size: 112.5%;
+		/* System default: follow the system's appearance */
+		color-scheme: light dark;
+		background: var(--color-slate-950);
+		/* Always leave room for the scrollbar, so short pages (like About) are the same width as long
+		   ones and the header doesn't shift when moving between them */
+		scrollbar-gutter: stable;
+	}
+
+	/* Headings read like panel placards */
+	h1,
+	h2,
+	h3 {
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	/* Used only from SVG and script (no class uses them), so outside @theme, which would drop them:
+	   syntax highlighting, and the route on the welcome tutorial's map */
+	:root {
+		--color-fuchsia-400: light-dark(#a3237a, #ff6ad5);
+		--color-route: light-dark(var(--color-fuchsia-400), var(--color-sky-400));
+	}
+
+	html[data-theme='light'] {
+		color-scheme: light;
+	}
+	html[data-theme='dark'] {
+		color-scheme: dark;
+	}
+
+	/* Decoration only: with reduced motion the airplanes stay put */
+	@media (prefers-reduced-motion: reduce) {
+		.animate-flyover {
+			display: none;
+		}
+		.animate-takeoff {
+			animation: none;
+		}
+	}
+
+	::selection {
+		background: color-mix(in srgb, var(--color-sky-400) 35%, transparent);
+	}
+
+	/* Anything clickable gets the pointer (Tailwind's reset gives buttons the default arrow) */
+	button,
+	[role='button'],
+	summary,
+	select,
+	label:has(> input:is([type='checkbox'], [type='radio'])),
+	input:is(
+		[type='checkbox'],
+		[type='radio'],
+		[type='button'],
+		[type='submit'],
+		[type='reset'],
+		[type='file']
+	),
+	::file-selector-button {
+		cursor: pointer;
+	}
+
+	:disabled,
+	:disabled::file-selector-button,
+	label:has(> input:disabled) {
+		cursor: not-allowed;
+	}
+}
+
+/*
+ * @tailwindcss/typography's prose colours are fixed values, made for a white or near-black page.
+ * Point them at the design tokens instead, so prose text follows the theme like everything else.
+ * Unlayered, so it wins over the plugin's own prose, prose-slate and prose-invert colours.
+ */
+.prose {
+	--tw-prose-body: var(--color-slate-200);
+	--tw-prose-headings: var(--color-slate-50);
+	--tw-prose-lead: var(--color-slate-300);
+	--tw-prose-links: var(--color-sky-400);
+	--tw-prose-bold: var(--color-slate-50);
+	--tw-prose-counters: var(--color-slate-400);
+	--tw-prose-bullets: var(--color-slate-500);
+	--tw-prose-hr: var(--color-slate-800);
+	--tw-prose-quotes: var(--color-slate-100);
+	--tw-prose-quote-borders: var(--color-slate-700);
+	--tw-prose-captions: var(--color-slate-400);
+	--tw-prose-kbd: var(--color-slate-50);
+	--tw-prose-code: var(--color-slate-50);
+	--tw-prose-pre-code: var(--color-slate-100);
+	--tw-prose-pre-bg: var(--color-slate-950);
+	--tw-prose-th-borders: var(--color-slate-700);
+	--tw-prose-td-borders: var(--color-slate-800);
+}

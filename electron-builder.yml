@@ -1,0 +1,26 @@
+appId: org.calmatters.airplane-mode-gui
+productName: Airplane Mode
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - out/**
+  - build/**
+  - drizzle/**
+  - resources/icon.png
+  - package.json
+mac:
+  target: dmg
+  category: public.app-category.productivity
+  # Without a paid Apple Developer ID the app is "ad-hoc" signed: a valid signature with no
+  # identity. macOS then blocks the downloaded app as being from an unidentified developer
+  # (open it via System Settings > Privacy & Security > Open Anyway) instead of calling it damaged.
+  # To sign and notarize for real, delete `identity` below and see the README.
+  identity: '-'
+  hardenedRuntime: true
+  entitlements: resources/entitlements.mac.plist
+  entitlementsInherit: resources/entitlements.mac.plist
+win:
+  target: nsis
+linux:
+  target: AppImage

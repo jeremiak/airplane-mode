@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+	<!-- Colours match the design tokens in src/routes/layout.css -->
+	<defs>
+		<linearGradient id="bezel" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#2b333e" />
+			<stop offset="1" stop-color="#11161d" />
+		</linearGradient>
+		<!-- A muted attitude-indicator horizon: sky above, ground below -->
+		<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#0d1117" />
+			<stop offset="1" stop-color="#173452" />
+		</linearGradient>
+		<linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#2e2318" />
+			<stop offset="1" stop-color="#0d1117" />
+		</linearGradient>
+		<clipPath id="display">
+			<rect x="148" y="148" width="728" height="728" rx="140" />
+		</clipPath>
+	</defs>
+
+	<!-- macOS app icon grid: 824px rounded square centred on a 1024px canvas -->
+	<rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bezel)" />
+
+	<g clip-path="url(#display)">
+		<rect x="148" y="148" width="728" height="420" fill="url(#sky)" />
+		<rect x="148" y="568" width="728" height="308" fill="url(#ground)" />
+		<rect x="148" y="566" width="728" height="4" fill="#aab5c2" opacity="0.55" />
+	</g>
+	<rect
+		x="148"
+		y="148"
+		width="728"
+		height="728"
+		rx="140"
+		fill="none"
+		stroke="#000"
+		stroke-opacity="0.5"
+		stroke-width="6"
+	/>
+
+	<!-- Airplane, drawn pointing up and turned 45° to point up and to the right -->
+	<g transform="translate(512 512) rotate(45) scale(2.5)">
+		<path
+			fill="#ffffff"
+			stroke="#ffffff"
+			stroke-width="6"
+			stroke-linejoin="round"
+			d="M0,-96 C9,-96 13,-86 13,-72 L13,-24 L94,20 L94,38 L13,16 L13,56 L36,73 L36,87 L0,78 L-36,87 L-36,73 L-13,56 L-13,16 L-94,38 L-94,20 L-13,-24 L-13,-72 C-13,-86 -9,-96 0,-96 Z"
+		/>
+	</g>
+</svg>
