@@ -1,0 +1,153 @@
+/* Colours follow the app's design tokens (src/routes/layout.css): light is an aeronautical chart,
+   navy ink on cream paper; dark is a glass cockpit display */
+:root {
+	color-scheme: light dark;
+	--bg: light-dark(#f3eedf, #0d1117);
+	--border: light-dark(#c9bea6, #364050);
+	--text: light-dark(#13213a, #e8edf2);
+	--muted: light-dark(#565d69, #8593a3);
+	--accent: light-dark(#1a62ad, #3fd4f5);
+	--accent-ink: light-dark(#fffdf6, #0d1117);
+	--font-sans: 'B612', ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 112.5%;
+	background: var(--bg);
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-sans);
+	line-height: 1.55;
+}
+
+main {
+	max-width: 52rem;
+	margin: 0 auto;
+	padding: 4rem 1rem 2rem;
+}
+
+.hero {
+	text-align: center;
+	margin-bottom: 3.5rem;
+}
+
+.icon {
+	width: 7rem;
+	height: 7rem;
+}
+
+h1 {
+	margin: 0.5rem 0 0;
+	font-size: 2.6rem;
+	letter-spacing: -0.01em;
+}
+
+.tagline {
+	margin: 0.5rem 0 1.25rem;
+	color: var(--accent);
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+.lede {
+	max-width: 36rem;
+	margin: 0 auto;
+	color: var(--muted);
+}
+
+.screenshot img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin-bottom: 3.5rem;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	box-shadow: 0 8px 30px light-dark(rgb(19 33 58 / 0.12), rgb(0 0 0 / 0.5));
+}
+
+h3 {
+	margin: 0 0 0.35rem;
+	font-size: 1rem;
+}
+
+section {
+	margin-bottom: 3rem;
+}
+
+.uses {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 1.5rem 2rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.uses p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+
+/* Reads like a panel placard, as in the app */
+.version {
+	margin: 0 0 1rem;
+	color: var(--muted);
+	font-size: 0.8rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	text-align: center;
+}
+
+.downloads {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+	gap: 1rem;
+}
+
+.button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.9rem 1rem;
+	background: var(--accent);
+	color: var(--accent-ink);
+	border-radius: 6px;
+	text-decoration: none;
+	transition: filter 0.15s;
+}
+
+.button:hover {
+	filter: brightness(1.1);
+}
+
+.button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+.platform {
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+
+.detail {
+	font-size: 0.8rem;
+	opacity: 0.85;
+}
+
+.note {
+	margin: 1rem 0 0;
+	color: var(--muted);
+	font-size: 0.8rem;
+	text-align: center;
+}

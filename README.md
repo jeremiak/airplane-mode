@@ -30,6 +30,17 @@ npm run dist:mac  # or dist:win / dist:linux for a specific platform
 The SvelteKit app is built with `adapter-node`, and the Electron main process runs that server, so server
 routes, `$lib/server` and the database all work. The Electron window and any browser use the same HTTP server.
 
+### Website
+
+`www/` is the marketing website: a single static HTML page and stylesheet, with no build step. Run
+`npm run serve:www` to serve it at `http://localhost:8080`, or deploy the directory as-is to any static host. It isn't part of the app
+build. The download buttons point to `www/downloads/` with electron-builder's file names, so upload the files
+from `dist/` there (or change the links) with each release.
+
+The app's About page and the website both show the version from `package.json`. Change it with `npm version`
+(e.g. `npm version minor`), which also updates the version and download file names in `www/index.html`
+through `scripts/sync-www-version.js`. After editing the version by hand, run `node scripts/sync-www-version.js`.
+
 ### Server settings
 
 The app listens on `127.0.0.1:3000` by default. Settings are read in this order:

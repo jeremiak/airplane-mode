@@ -9,6 +9,8 @@ files:
   - drizzle/**
   - resources/icon.png
   - package.json
+  # The marketing website (www/) is deployed separately and never goes in the app
+  - '!www/**'
 mac:
   target: dmg
   category: public.app-category.productivity

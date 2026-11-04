@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Airplane Mode</title>
+		<meta
+			name="description"
+			content="An easy-to-use and easy-to-edit HTTP cache that keeps a copy of anything you load through it, so you can keep working when a site is slow, changing or offline."
+		/>
+		<link rel="icon" href="icon.svg" type="image/svg+xml" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main>
+			<header class="hero">
+				<img class="icon" src="icon.svg" alt="" width="128" height="128" />
+				<h1>Airplane Mode</h1>
+				<p class="tagline">An easy-to-use and easy-to-edit HTTP cache for web development.</p>
+			</header>
+
+			<section aria-label="What it's for">
+				<ul class="uses">
+					<li>
+						<h3>Work offline</h3>
+						<p>
+							Load a page or API once, then keep using it on a plane, a train or bad hotel Wi-Fi.
+						</p>
+					</li>
+					<li>
+						<h3>Freeze a moving target</h3>
+						<p>
+							Pin down a site or API that keeps changing so your demo, test or story doesn't break
+							under you.
+						</p>
+					</li>
+					<li>
+						<h3>Edit what comes back</h3>
+						<p>
+							Change a stored response's status, headers or content, or swap in a file, to try out
+							edge cases without touching the server.
+						</p>
+					</li>
+				</ul>
+			</section>
+
+			<!-- Shows the screenshot in the same theme as the page -->
+			<picture class="screenshot">
+				<source srcset="screenshot-dark.png" media="(prefers-color-scheme: dark)" />
+				<img
+					src="screenshot-light.png"
+					alt="The Airplane Mode app, listing cached responses next to a live request log"
+					width="2560"
+					height="1600"
+				/>
+			</picture>
+
+			<section aria-labelledby="download">
+				<!-- The version and file names are kept in step with package.json by
+				     scripts/sync-www-version.js (run by `npm version`) -->
+				<p class="version" id="download">Download version <span data-version>1.0.0</span></p>
+				<div class="downloads">
+					<a class="button" href="downloads/Airplane%20Mode-1.0.0-arm64.dmg">
+						<span class="platform">macOS</span>
+						<span class="detail">Apple Silicon · .dmg</span>
+					</a>
+					<a class="button" href="downloads/Airplane%20Mode%20Setup%201.0.0.exe">
+						<span class="platform">Windows</span>
+						<span class="detail">Installer · .exe</span>
+					</a>
+					<a class="button" href="downloads/Airplane%20Mode-1.0.0-arm64.AppImage">
+						<span class="platform">Linux</span>
+						<span class="detail">AppImage</span>
+					</a>
+				</div>
+				<p class="note">
+					The macOS app isn't notarized yet. If macOS won't open it, go to
+					<strong>System Settings → Privacy &amp; Security</strong> and click
+					<strong>Open Anyway</strong>.
+				</p>
+			</section>
+		</main>
+	</body>
+</html>

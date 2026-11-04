@@ -1,7 +1,7 @@
 {
 	"name": "airplane-mode-gui",
 	"private": true,
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"type": "module",
 	"main": "./out/main/index.js",
 	"scripts": {
@@ -10,6 +10,8 @@
 		"build": "electron-vite build --ignoreConfigWarning && vite build",
 		"build:web": "vite build",
 		"preview": "npm run build && electron-vite preview --skipBuild",
+		"serve:www": "serve www --listen 8080",
+		"version": "node scripts/sync-www-version.js",
 		"dist": "npm run build && electron-builder",
 		"dist:mac": "npm run build && electron-builder --mac",
 		"dist:win": "npm run build && electron-builder --win",
@@ -71,6 +73,7 @@
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^4.1.0",
 		"prettier-plugin-tailwindcss": "^0.8.0",
+		"serve": "^14.2.6",
 		"storybook": "^10.6.5",
 		"svelte": "^5.57.2",
 		"svelte-check": "^4.6.0",

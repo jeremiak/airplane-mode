@@ -13,9 +13,7 @@
 	</p>
 	<p>The idea is to make web development easier by helping you:</p>
 	<ul>
-		<li>
-			inspect HTTP requests and save them for when you don't have access to the internet
-		</li>
+		<li>inspect HTTP requests and save them for when you don't have access to the internet</li>
 		<li>modify an API response</li>
 		<li>avoid incurring too many third-party API requests during development</li>
 	</ul>
@@ -34,4 +32,5 @@
 			>supporting its development</a
 		>.
 	</p>
+	<p class="text-slate-400">Version {data.version}</p>
 </div>
