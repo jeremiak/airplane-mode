@@ -1,36 +1,6 @@
-# sv
+# Airplane Mode
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@1.2.0 create --template minimal --types jsdoc --add prettier eslint vitest="usages:unit,component" tailwindcss="plugins:typography,forms" drizzle="database:sqlite+sqlite:node-sqlite" storybook --install npm airplane-mode-gui
-```
-
-## Adding features
-
-Add features to your project with `sv add`:
-
-```sh
-npx sv add
-```
-
-For example, to add Tailwind CSS:
-
-```sh
-npx sv add tailwindcss
-```
+Airplane Mode is an easy-to-use and easy-to-edit HTTP cache that keeps a copy of anything you load through it, so you can keep working when a site is slow, changing or offline.
 
 ## Developing
 
