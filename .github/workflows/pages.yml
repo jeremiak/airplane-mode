@@ -1,0 +1,35 @@
+# Deploys the marketing website (www/) to GitHub Pages as-is; it has no build step. Runs when a push to
+# main changes www/, which includes the version bump `npm version` makes.
+# One-time setup: Settings > Pages > Build and deployment > Source: GitHub Actions.
+name: Deploy website
+
+on:
+  push:
+    branches: [main]
+    paths: ['www/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push replaces a queued one but never cancels one in progress
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: www
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -62,21 +62,31 @@
 			</picture>
 
 			<section aria-labelledby="download">
-				<!-- The version and file names are kept in step with package.json by
-				     scripts/sync-www-version.js (run by `npm version`) -->
+				<!-- The version is kept in step with package.json by scripts/sync-www-version.js (run by
+				     `npm version`). The links are to the newest GitHub release, which
+				     .github/workflows/release.yml publishes. -->
 				<p class="version" id="download">Download version <span data-version>1.0.0</span></p>
 				<div class="downloads">
-					<a class="button" href="downloads/Airplane%20Mode-1.0.0-arm64.dmg">
+					<a
+						class="button"
+						href="https://github.com/jeremiak/airplane-mode/releases/latest/download/Airplane-Mode-mac-arm64.dmg"
+					>
 						<span class="platform">macOS</span>
 						<span class="detail">Apple Silicon · .dmg</span>
 					</a>
-					<a class="button" href="downloads/Airplane%20Mode%20Setup%201.0.0.exe">
+					<a
+						class="button"
+						href="https://github.com/jeremiak/airplane-mode/releases/latest/download/Airplane-Mode-windows-x64-setup.exe"
+					>
 						<span class="platform">Windows</span>
-						<span class="detail">Installer · .exe</span>
+						<span class="detail">x64 · .exe installer</span>
 					</a>
-					<a class="button" href="downloads/Airplane%20Mode-1.0.0-arm64.AppImage">
+					<a
+						class="button"
+						href="https://github.com/jeremiak/airplane-mode/releases/latest/download/Airplane-Mode-linux-x86_64.AppImage"
+					>
 						<span class="platform">Linux</span>
-						<span class="detail">AppImage</span>
+						<span class="detail">x64 · AppImage</span>
 					</a>
 				</div>
 				<p class="note">
