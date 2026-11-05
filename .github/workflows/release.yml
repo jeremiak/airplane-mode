@@ -1,0 +1,57 @@
+# Builds the installers for macOS, Windows and Linux, each on its own platform, and keeps them as
+# workflow artifacts. Pushing a version tag (`npm version` makes one, e.g. v1.0.0) also publishes them
+# as a GitHub release, which the website's download buttons link to.
+name: Build and release
+
+on:
+  push:
+    tags: ['v*']
+  # Builds without releasing, from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest # Apple Silicon
+            platform: mac
+          - os: windows-latest
+            platform: win
+          - os: ubuntu-latest
+            platform: linux
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # The release job publishes, so electron-builder doesn't try to on a tag
+      - run: npm run dist:${{ matrix.platform }} -- --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: airplane-mode-${{ matrix.platform }}
+          path: |
+            dist/*.dmg
+            dist/*.exe
+            dist/*.AppImage
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true

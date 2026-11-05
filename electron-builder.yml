@@ -22,7 +22,13 @@ mac:
   hardenedRuntime: true
   entitlements: resources/entitlements.mac.plist
   entitlementsInherit: resources/entitlements.mac.plist
+  # Installer file names leave out the version, so the website can link to the newest GitHub release's
+  # files (releases/latest/download/<name>), and use no spaces, which GitHub turns into dots
+  artifactName: Airplane-Mode-mac-${arch}.${ext}
 win:
   target: nsis
+nsis:
+  artifactName: Airplane-Mode-windows-${arch}-setup.${ext}
 linux:
   target: AppImage
+  artifactName: Airplane-Mode-linux-${arch}.${ext}

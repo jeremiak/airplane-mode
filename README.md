@@ -33,13 +33,28 @@ routes, `$lib/server` and the database all work. The Electron window and any bro
 ### Website
 
 `www/` is the marketing website: a single static HTML page and stylesheet, with no build step. Run
-`npm run serve:www` to serve it at `http://localhost:8080`, or deploy the directory as-is to any static host. It isn't part of the app
-build. The download buttons point to `www/downloads/` with electron-builder's file names, so upload the files
-from `dist/` there (or change the links) with each release.
+`npm run serve:www` to serve it at `http://localhost:8080`. `.github/workflows/pages.yml` deploys it to
+GitHub Pages whenever a push to `main` changes `www/` (set Settings > Pages > Source to "GitHub Actions"
+once first). It isn't part of the app build. The download buttons link to the installers in the newest
+[GitHub release](https://github.com/jeremiak/airplane-mode/releases/latest).
 
 The app's About page and the website both show the version from `package.json`. Change it with `npm version`
-(e.g. `npm version minor`), which also updates the version and download file names in `www/index.html`
-through `scripts/sync-www-version.js`. After editing the version by hand, run `node scripts/sync-www-version.js`.
+(e.g. `npm version minor`), which also updates the version in `www/index.html` through
+`scripts/sync-www-version.js`. After editing the version by hand, run `node scripts/sync-www-version.js`.
+
+### Releasing
+
+`.github/workflows/release.yml` builds the macOS (Apple Silicon), Windows (x64) and Linux (x64) installers on
+GitHub, each on its own platform. To release:
+
+```sh
+npm version minor          # updates package.json and the website, commits and tags, e.g. v1.1.0
+git push --follow-tags     # the tag starts the workflow
+```
+
+The workflow publishes the installers as a GitHub release for the tag, and the website's download buttons
+always point to the newest release. To build without releasing, run the workflow from the Actions tab; the
+installers are kept as the run's artifacts.
 
 ### Server settings
 
