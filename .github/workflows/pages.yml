@@ -8,9 +8,6 @@ on:
   push:
     branches: [main]
     paths: ['www/**', '.github/workflows/pages.yml']
-  workflow_run:
-    workflows: ['Build and release']
-    types: [completed]
   workflow_dispatch:
 
 permissions:
