@@ -1,5 +1,6 @@
 # Deploys the marketing website (www/) to GitHub Pages as-is; it has no build step. Runs when a push to
-# main changes www/, which includes the version bump `npm version` makes.
+# main changes www/ or this file, and again after release.yml publishes a release, so the site's
+# download links pick up the new release once it exists.
 # One-time setup: Settings > Pages > Build and deployment > Source: GitHub Actions.
 name: Deploy website
 
@@ -7,6 +8,9 @@ on:
   push:
     branches: [main]
     paths: ['www/**', '.github/workflows/pages.yml']
+  workflow_run:
+    workflows: ['Build and release']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -21,6 +25,11 @@ concurrency:
 
 jobs:
   deploy:
+    # After release.yml, only when a tag push released successfully; run from the Actions tab it
+    # builds without releasing
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
