@@ -1,7 +1,11 @@
 import { defineEnvVars } from '@sveltejs/kit/env';
 
 export const variables = defineEnvVars({
-	DATABASE_URL: { description: 'The database connection string.' },
+	DATABASE_URL: {
+		description:
+			'The database connection string. Set by the Electron main process; unset in CI builds.',
+		schema: (value) => value || 'app.db'
+	},
 	MIGRATIONS_DIR: {
 		description: 'The folder of Drizzle migrations applied on startup.',
 		schema: (value) => value || 'drizzle'
